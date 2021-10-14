@@ -187,19 +187,36 @@ class Map():
     def __init__(self, start_scene):
         self.start_scene = start_scene
 
-    def next_scene(self, scene_name): #方法，接收字符串场景名，返回对应场景类
+    def next_scene(self, scene_name): 
+        #方法，接收字符串场景名，返回对应场景类      
         val = Map.scenes.get(scene_name)
         return val
+        '''
+        Map()类有一个scenes属性
+        scenes是一个字典，键是场景字符串，值是场景类
+        Map()类中有next_scene方法，接受一个参数x，
+        Map对象的scenes
+        scenes是字典，再对字典使用get(x)方法，
+        即返回键x，的值，此值是类。
+        '''
 
     def opening_scene(self): 
-        '''方法，不接受参数（接收了实例的开始场景属性），返回场景类，
+        return self.next_scene(self.start_scene)
+        '''
+        方法，不接受参数（接收了实例的开始场景属性），返回场景类，
         岂不是和上面方法一样吗？
         只返回创建实例时，填的属性对应的场景。
-        也就是说他只返回固定一个场景类'''
-        return self.next_scene(self.start_scene)
+        也就是说他只返回固定一个场景类
+        ？？？和next_scene()构成递归？一个给递归，一个给基例？
+
+        self.next_scene(self.start_scene)
+        第一个self,代指实例，即后面新建的a_map
+        next_scene(self.start_scene)
+        中的self.start_scene是Map()类的start_scene属性
+        '''
 
 
-'''a_map = Map('central_corridor') #创建Map实例，'central_corridor'为实参.
+'''a_map = Map('central_corridor')
 a_game = Engine(a_map) #Engine类接受一个“当前场景”属性，此处以a_map作为实参，而a_map实例有切换场景的函数。
 a_game.play()'''
 
